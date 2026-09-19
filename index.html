@@ -1,83 +1,18 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a84ff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Controle Saúde">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon.svg">
-<title>Controle Saúde</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header>
-  <div>
-    <h1>Controle Saúde</h1>
-    <p>Seu acompanhamento pessoal</p>
-  </div>
-</header>
-
-<main>
-<section id="home" class="tab active">
-  <div class="cards">
-    <div class="card"><span>⚖️</span><small>Peso atual</small><strong id="currentWeight">--</strong></div>
-    <div class="card"><span>📈</span><small>Registros</small><strong id="weightCount">0</strong></div>
-  </div>
-
-  <div class="panel">
-    <h2>Evolução do peso</h2>
-    <canvas id="chart" height="210"></canvas>
-    <p id="lastWeight" class="muted">Nenhum peso registrado.</p>
-  </div>
-
-  <div class="actions">
-    <button onclick="openModal('weight')">⚖️ Registrar peso</button>
-    <button onclick="openModal('tg')">💉 Registrar TG</button>
-    <button onclick="openModal('med')">💊 Registrar medicamento</button>
-  </div>
-
-  <div class="panel">
-    <h2>Hoje</h2>
-    <div id="today"></div>
-  </div>
-</section>
-
-<section id="history" class="tab">
-  <h2>Histórico</h2>
-  <div class="panel"><h3>⚖️ Peso</h3><div id="weights"></div></div>
-  <div class="panel"><h3>💉 TG</h3><div id="tgs"></div></div>
-  <div class="panel"><h3>💊 Medicamentos</h3><div id="meds"></div></div>
-</section>
-
-<section id="settings" class="tab">
-  <h2>Ajustes</h2>
-  <div class="panel">
-    <button class="secondary" onclick="requestNotifications()">🔔 Permitir notificações</button>
-    <p class="muted">Os dados ficam salvos neste navegador no seu iPhone. Esta versão não envia seus registros para um servidor.</p>
-  </div>
-  <div class="panel warning">
-    <strong>Importante</strong>
-    <p>Este app é um diário de acompanhamento. Doses e horários devem seguir a prescrição recebida. O app não recomenda alterações de dose.</p>
-  </div>
-</section>
-</main>
-
-<nav>
-  <button data-tab="home" class="selected">⌂<span>Hoje</span></button>
-  <button data-tab="history">▤<span>Histórico</span></button>
-  <button data-tab="settings">⚙<span>Ajustes</span></button>
-</nav>
-
-<div id="modal" class="modal hidden">
- <div class="modalbox">
-  <button class="close" onclick="closeModal()">×</button>
-  <h2 id="modalTitle"></h2>
-  <form id="form"></form>
- </div>
-</div>
-<script src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a84ff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Controle Saúde">
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon.svg"><title>Controle Saúde</title><link rel="stylesheet" href="style.css"></head>
+<body><header><h1>Controle Saúde</h1><p>Seu acompanhamento pessoal</p></header><main>
+<section id="home" class="tab active"><div class="cards"><div class="card">⚖️<small>Peso atual</small><strong id="cw">--</strong></div><div class="card">🎯<small>Meta</small><strong id="gw">--</strong></div></div>
+<div class="cards"><div class="card">📉<small>Perda total</small><strong id="loss">--</strong></div><div class="card">📅<small>Registros</small><strong id="count">0</strong></div></div>
+<div class="panel"><h2>Evolução do peso</h2><canvas id="chart" height="220"></canvas><p id="ws" class="muted"></p></div>
+<div class="panel"><h2>Resumo</h2><div id="summary"></div></div>
+<div class="actions"><button onclick="openM('weight')">⚖️ Registrar peso</button><button onclick="openM('tg')">💉 Registrar TG</button><button onclick="openM('med')">💊 Registrar medicamento</button><button onclick="openCreatine()">🏋️ Registrar creatina</button></div>
+<div class="panel"><h2>Hoje</h2><div id="today"></div><div id="creatineStatus"></div></div></section>
+<section id="history" class="tab"><h2>Histórico</h2><div class="panel"><h3>⚖️ Peso</h3><div id="weights"></div></div><div class="panel"><h3>💉 TG</h3><div id="tgs"></div></div><div class="panel"><h3>💊 Medicamentos</h3><div id="meds"></div></div></section>
+<section id="settings" class="tab"><h2>Ajustes</h2><div class="panel"><h3>🎯 Meta de peso</h3><input id="goal" type="number" step=".1" placeholder="Meta em kg"><button onclick="saveGoal()">Salvar meta</button></div>
+<div class="panel"><h3>⏰ Horários</h3><label>B3</label><input id="b3" type="time"><label>Ômega 3</label><input id="om" type="time"><button onclick="saveTimes()">Salvar horários</button><button class="secondary" onclick="notify()">🔔 Permitir notificações</button><p class="muted">Os horários ficam salvos para consulta. Alarmes automáticos em web apps do iPhone dependem do suporte de notificações do sistema.</p></div>
+<div class="panel"><h3>🔐 Privacidade</h3><button class="secondary" onclick="pin()">Definir/alterar PIN</button><button class="danger" onclick="wipe()">Apagar todos os dados</button><p class="muted">Dados armazenados localmente no aparelho.</p></div>
+<div class="panel warning"><b>Importante</b><p>O app é apenas um diário. Doses e horários devem seguir a prescrição. O app não recomenda alterações de dose.</p></div></section></main>
+<nav><button class="selected" data-t="home">⌂<span>Hoje</span></button><button data-t="history">▤<span>Histórico</span></button><button data-t="settings">⚙<span>Ajustes</span></button></nav>
+<div id="modal" class="modal hidden"><div class="modalbox"><button class="close" onclick="closeM()">×</button><h2 id="mt"></h2><form id="form"></form></div></div><script src="app.js"></script></body></html>
