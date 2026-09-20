@@ -1,22 +1,65 @@
-<!doctype html><html lang="pt-BR"><head>
+<!doctype html>
+<html lang="pt-BR">
+<head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0a84ff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Controle Saúde">
-<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon.svg"><title>Controle Saúde</title><link rel="stylesheet" href="style.css"></head>
-<body><header><div><h1>Controle Saúde</h1><p>Seu acompanhamento pessoal</p></div>
-<button class="themeBtn" onclick="toggleTheme()" id="themeBtn">🌙 Tema escuro</button></header><main>
-<section id="home" class="tab active"><div class="cards"><div class="card">⚖️<small>Peso atual</small><strong id="cw">--</strong></div><div class="card">🎯<small>Meta</small><strong id="gw">--</strong></div></div>
-<div class="cards"><div class="card">📉<small>Perda total</small><strong id="loss">--</strong></div><div class="card">📅<small>Registros</small><strong id="count">0</strong></div></div>
-<div class="panel"><h2>Evolução do peso</h2><canvas id="chart" height="220"></canvas><p id="ws" class="muted"></p></div>
-<div class="panel"><h2>Resumo</h2><div id="summary"></div></div>
-<div class="actions"><button onclick="openM('weight')">⚖️ Registrar peso</button><button onclick="openM('tg')">💉 Registrar Retatrutida</button><button onclick="openM('med')">💊 Registrar medicamento</button><button onclick="openCreatine()">🏋️ Registrar creatina</button></div>
-<div class="panel"><h2>Hoje</h2><div id="today"></div><div id="creatineStatus"></div><div id="dailyStatus"></div></div>
-<div class="panel"><h2>🔥 Sequência de dias</h2><div id="streaks"></div></div></section>
-<section id="history" class="tab"><h2>Histórico</h2>
-<div class="panel"><h3>📅 Calendário</h3><input id="calendarDate" type="date" onchange="showDay(this.value)"><div id="dayView"></div></div><div class="panel"><h3>⚖️ Peso</h3><div id="weights"></div></div><div class="panel"><h3>💉 Retatrutida</h3><div id="tgs"></div></div><div class="panel"><h3>💊 Medicamentos</h3><div id="meds"></div></div></section>
-<section id="settings" class="tab"><h2>Ajustes</h2>
-<div class="panel"><h3>🎨 Aparência</h3><button class="secondary" onclick="toggleTheme()">🌙 Alternar tema claro/escuro</button></div><div class="panel"><h3>🎯 Meta de peso</h3><input id="goal" type="number" step=".1" placeholder="Meta em kg"><button onclick="saveGoal()">Salvar meta</button></div>
-<div class="panel"><h3>⏰ Horários</h3><label>B3</label><input id="b3" type="time"><label>Ômega 3</label><input id="om" type="time"><button onclick="saveTimes()">Salvar horários</button><button class="secondary" onclick="notify()">🔔 Permitir notificações</button><p class="muted">Os horários ficam salvos para consulta. Alarmes automáticos em web apps do iPhone dependem do suporte de notificações do sistema.</p></div>
-<div class="panel"><h3>🔐 Privacidade</h3><button class="secondary" onclick="pin()">Definir/alterar PIN</button><button class="danger" onclick="wipe()">Apagar todos os dados</button><p class="muted">Dados armazenados localmente no aparelho.</p></div>
-<div class="panel warning"><b>Importante</b><p>O app é apenas um diário. Doses e horários devem seguir a prescrição. O app não recomenda alterações de dose.</p></div></section></main>
-<nav><button class="selected" data-t="home">⌂<span>Hoje</span></button><button data-t="history">▤<span>Histórico</span></button><button data-t="settings">⚙<span>Ajustes</span></button></nav>
-<div id="modal" class="modal hidden"><div class="modalbox"><button class="close" onclick="closeM()">×</button><h2 id="mt"></h2><form id="form"></form></div></div><script src="app.js"></script></body></html>
+<meta name="theme-color" content="#06111f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Controle Saúde">
+<link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon.svg"><title>Controle Saúde</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="heart">♥</div><div><h1>Controle Saúde</h1><p>Disciplina hoje, resultados amanhã!</p></div></div>
+  <div class="top-actions"><button class="theme-fixed">☾ <span>Tema<br>Escuro</span></button><button class="gear" data-tab="settings">⚙</button></div>
+</header>
+<main>
+<section id="home" class="tab active">
+  <div class="stats-grid">
+    <div class="stat"><div class="ico blue">⚖</div><span>Peso Atual</span><strong id="cw">--</strong><small id="weightDelta">Registre seu peso</small></div>
+    <div class="stat"><div class="ico red">◎</div><span>Meta de Peso</span><strong id="gw">--</strong><small id="goalDelta">Defina sua meta</small><div class="progress"><i id="goalProgress"></i></div></div>
+    <div class="stat"><div class="ico cyan">▣</div><span>Dias em foco</span><strong id="focusDays">0</strong><small>dias seguidos</small><b class="trend">↗</b></div>
+    <div class="stat"><div class="ico yellow">♛</div><span>Meu objetivo</span><strong class="objective" id="objective">Mais saúde</strong><small>uma vida melhor!</small></div>
+  </div>
+
+  <div class="action-grid">
+    <button class="action blueAction" onclick="openM('weight')"><span>⚖</span><b>Registrar<br>peso</b></button>
+    <button class="action purpleAction" onclick="openM('tg')"><span>💉</span><b>Registrar<br>Retatrutida</b></button>
+    <button class="action greenAction" onclick="openM('med')"><span>💊</span><b>Registrar<br>medicamento<br><small>(B3 e Ômega 3)</small></b></button>
+    <button class="action orangeAction" onclick="openCreatine()"><span>🏋</span><b>Registrar<br>creatina</b></button>
+  </div>
+
+  <section class="today-panel panel">
+    <div class="section-head"><h2>Hoje — <span id="todayDate"></span></h2><button class="mini" onclick="openTab('history')">▣ Calendário</button></div>
+    <div class="today-layout">
+      <div class="checklist" id="todayList"></div>
+      <div class="daily-side"><div class="quote">“Cuidar de si hoje<br>é construir o seu<br>melhor amanhã!”<i></i></div><div class="status-card"><b>🎯 Status do dia</b><strong id="dailyScore">0/5 concluído</strong><div class="scorebar"><i id="scoreBar"></i></div><span id="dailyMessage">Comece seu dia!</span></div></div>
+    </div>
+  </section>
+
+  <div class="lower-grid">
+    <section class="panel chart-panel"><div class="section-head"><h2>▧ Evolução do peso</h2><b id="lossBadge">--</b></div><canvas id="chart" height="240"></canvas></section>
+    <section class="panel streak-panel"><div class="section-head"><h2>🔥 Sequência de dias</h2></div><div id="streaks"></div></section>
+  </div>
+
+  <div class="shortcut-grid"><button onclick="openTab('history')"><span>▤</span><b>Últimos registros</b><small>Veja seu histórico completo</small><em>›</em></button><button onclick="openTab('settings')"><span>📝</span><b>Anotações</b><small>Suas observações diárias</small><em>›</em></button></div>
+</section>
+
+<section id="history" class="tab"><div class="page-title"><h2>Histórico</h2><p>Todos os seus registros em um só lugar.</p></div>
+  <div class="panel"><h3>📅 Calendário</h3><input id="calendarDate" type="date" onchange="showDay(this.value)"><div id="dayView"></div></div>
+  <div class="panel"><h3>⚖️ Peso</h3><div id="weights"></div></div>
+  <div class="panel"><h3>💉 Retatrutida</h3><div id="tgs"></div></div>
+  <div class="panel"><h3>💊 Medicamentos e suplementos</h3><div id="meds"></div></div>
+</section>
+
+<section id="graphs" class="tab"><div class="page-title"><h2>Gráficos</h2><p>Acompanhe sua evolução.</p></div><div class="panel"><h3>▧ Evolução do peso</h3><canvas id="chartBig" height="280"></canvas></div><div class="panel"><h3>🔥 Sequências</h3><div id="streaksBig"></div></div></section>
+
+<section id="settings" class="tab"><div class="page-title"><h2>Ajustes</h2><p>Configurações do seu acompanhamento.</p></div>
+  <div class="panel"><h3>🎯 Meta de peso</h3><input id="goal" type="number" step=".1" placeholder="Meta em kg"><button onclick="saveGoal()">Salvar meta</button></div>
+  <div class="panel"><h3>🏆 Meu objetivo</h3><input id="objectiveInput" maxlength="40" placeholder="Ex.: Mais saúde e energia"><button onclick="saveObjective()">Salvar objetivo</button></div>
+  <div class="panel"><h3>⏰ Horários</h3><label>B3</label><input id="b3" type="time"><label>Ômega 3</label><input id="om" type="time"><button onclick="saveTimes()">Salvar horários</button><button class="secondary" onclick="notify()">🔔 Permitir notificações</button></div>
+  <div class="panel"><h3>🔐 Privacidade</h3><button class="secondary" onclick="pin()">Definir/alterar PIN</button><button class="danger" onclick="wipe()">Apagar todos os dados</button><p class="muted">Os dados ficam armazenados localmente neste aparelho.</p></div>
+  <div class="panel warning"><b>Importante</b><p>O app é apenas um diário. Doses e horários devem seguir a prescrição. O app não recomenda alterações de dose.</p></div>
+</section>
+</main>
+<nav><button class="selected" data-t="home">⌂<span>Início</span></button><button data-t="history">☷<span>Histórico</span></button><button data-t="graphs">▥<span>Gráficos</span></button><button data-t="settings">⚙<span>Ajustes</span></button></nav>
+<div id="modal" class="modal hidden"><div class="modalbox"><button class="close" onclick="closeM()">×</button><h2 id="mt"></h2><form id="form"></form></div></div>
+<script src="app.js"></script>
+</body></html>

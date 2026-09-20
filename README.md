@@ -1,10 +1,16 @@
-# Controle Saúde v4
+# Controle Saúde — V5
 
-- Peso, meta, perda total e evolução.
-- Retatrutida: registro de dose, data, horário e observação (apenas diário; não recomenda ou altera doses).
-- B3, Ômega 3 e creatina com registro diário.
-- Checklist de hoje.
-- Sequência de dias para creatina, Ômega 3, B3 e Retatrutida.
-- Calendário por data.
-- Tema claro/escuro com preferência salva no aparelho.
-- PIN local e dados locais.
+Versão web/PWA em tema escuro fixo, com dashboard inspirado no esboço aprovado.
+
+Inclui:
+- Dashboard escuro com quatro cartões de resumo.
+- Quatro botões coloridos: Peso, Retatrutida, medicamento e creatina.
+- Checklist diário de 5 itens.
+- Sequências por item e dias em foco.
+- Gráfico de evolução do peso.
+- Histórico e calendário.
+- Aba de gráficos.
+- Ajustes de meta, objetivo, horários, PIN e notificações.
+- Dados locais no aparelho.
+
+Para atualizar no GitHub Pages, substitua os arquivos da pasta do projeto pelos arquivos desta versão.
