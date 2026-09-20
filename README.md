@@ -1,3 +1,3 @@
-# Controle Saúde V7
+Controle Saúde V8
 
-Checklist diário: Peso, B3, Ômega 3 e Creatina. Cada item permanece pendente até ser registrado no dia e então vira check verde. Retatrutida é acompanhada separadamente como aplicação semanal e não entra na contagem diária. Tema escuro e quatro botões coloridos mantidos.
+Tema escuro fixo. Checklist diário e Retatrutida semanal mantidos. Os quatro botões coloridos de registro foram retirados do topo e ficam no final da tela, dentro de “Registrar dados”, fechado por padrão. Toque em “Mostrar” para abrir.

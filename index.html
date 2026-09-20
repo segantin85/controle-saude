@@ -19,13 +19,6 @@
     <div class="stat"><div class="ico yellow">♛</div><span>Meu objetivo</span><strong class="objective" id="objective">Mais saúde</strong><small>uma vida melhor!</small></div>
   </div>
 
-  <div class="action-grid">
-    <button class="action blueAction" onclick="openM('weight')"><span>⚖</span><b>Registrar<br>peso</b></button>
-    <button class="action purpleAction" onclick="openM('tg')"><span>💉</span><b>Registrar<br>Retatrutida</b></button>
-    <button class="action greenAction" onclick="openM('med')"><span>💊</span><b>Registrar<br>medicamento<br><small>(B3 e Ômega 3)</small></b></button>
-    <button class="action orangeAction" onclick="openCreatine()"><span>🏋</span><b>Registrar<br>creatina</b></button>
-  </div>
-
   <section class="today-panel panel">
     <div class="section-head"><h2>Hoje — <span id="todayDate"></span></h2><button class="mini" onclick="openTab('history')">▣ Calendário</button></div>
     <div class="today-layout">
@@ -40,6 +33,18 @@
   </div>
 
   <div class="shortcut-grid"><button onclick="openTab('history')"><span>▤</span><b>Últimos registros</b><small>Veja seu histórico completo</small><em>›</em></button><button onclick="openTab('settings')"><span>📝</span><b>Anotações</b><small>Suas observações diárias</small><em>›</em></button></div>
+
+  <section class="register-panel panel">
+    <button class="register-toggle" type="button" onclick="toggleRegister()" aria-expanded="false">
+      <span><b>Registrar dados</b><small>Abra quando quiser adicionar um registro</small></span><strong id="registerToggleLabel">Mostrar</strong><em id="registerChevron">⌃</em>
+    </button>
+    <div class="action-grid collapsed-actions" id="registerActions" hidden>
+      <button class="action blueAction" onclick="openM('weight')"><span>⚖</span><b>Registrar<br>peso</b></button>
+      <button class="action purpleAction" onclick="openM('tg')"><span>💉</span><b>Registrar<br>Retatrutida</b></button>
+      <button class="action greenAction" onclick="openM('med')"><span>💊</span><b>Registrar<br>medicamento<br><small>(B3 e Ômega 3)</small></b></button>
+      <button class="action orangeAction" onclick="openCreatine()"><span>🏋</span><b>Registrar<br>creatina</b></button>
+    </div>
+  </section>
 </section>
 
 <section id="history" class="tab"><div class="page-title"><h2>Histórico</h2><p>Todos os seus registros em um só lugar.</p></div>
@@ -61,5 +66,5 @@
 </main>
 <nav><button class="selected" data-t="home">⌂<span>Início</span></button><button data-t="history">☷<span>Histórico</span></button><button data-t="graphs">▥<span>Gráficos</span></button><button data-t="settings">⚙<span>Ajustes</span></button></nav>
 <div id="modal" class="modal hidden"><div class="modalbox"><button class="close" onclick="closeM()">×</button><h2 id="mt"></h2><form id="form"></form></div></div>
-<script src="app.js?v=7"></script>
+<script src="app.js?v=8"></script>
 </body></html>
