@@ -2,15 +2,19 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a84ff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Controle Saúde">
 <link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon.svg"><title>Controle Saúde</title><link rel="stylesheet" href="style.css"></head>
-<body><header><h1>Controle Saúde</h1><p>Seu acompanhamento pessoal</p></header><main>
+<body><header><div><h1>Controle Saúde</h1><p>Seu acompanhamento pessoal</p></div>
+<button class="themeBtn" onclick="toggleTheme()" id="themeBtn">🌙 Tema escuro</button></header><main>
 <section id="home" class="tab active"><div class="cards"><div class="card">⚖️<small>Peso atual</small><strong id="cw">--</strong></div><div class="card">🎯<small>Meta</small><strong id="gw">--</strong></div></div>
 <div class="cards"><div class="card">📉<small>Perda total</small><strong id="loss">--</strong></div><div class="card">📅<small>Registros</small><strong id="count">0</strong></div></div>
 <div class="panel"><h2>Evolução do peso</h2><canvas id="chart" height="220"></canvas><p id="ws" class="muted"></p></div>
 <div class="panel"><h2>Resumo</h2><div id="summary"></div></div>
-<div class="actions"><button onclick="openM('weight')">⚖️ Registrar peso</button><button onclick="openM('tg')">💉 Registrar TG</button><button onclick="openM('med')">💊 Registrar medicamento</button><button onclick="openCreatine()">🏋️ Registrar creatina</button></div>
-<div class="panel"><h2>Hoje</h2><div id="today"></div><div id="creatineStatus"></div></div></section>
-<section id="history" class="tab"><h2>Histórico</h2><div class="panel"><h3>⚖️ Peso</h3><div id="weights"></div></div><div class="panel"><h3>💉 TG</h3><div id="tgs"></div></div><div class="panel"><h3>💊 Medicamentos</h3><div id="meds"></div></div></section>
-<section id="settings" class="tab"><h2>Ajustes</h2><div class="panel"><h3>🎯 Meta de peso</h3><input id="goal" type="number" step=".1" placeholder="Meta em kg"><button onclick="saveGoal()">Salvar meta</button></div>
+<div class="actions"><button onclick="openM('weight')">⚖️ Registrar peso</button><button onclick="openM('tg')">💉 Registrar Retatrutida</button><button onclick="openM('med')">💊 Registrar medicamento</button><button onclick="openCreatine()">🏋️ Registrar creatina</button></div>
+<div class="panel"><h2>Hoje</h2><div id="today"></div><div id="creatineStatus"></div><div id="dailyStatus"></div></div>
+<div class="panel"><h2>🔥 Sequência de dias</h2><div id="streaks"></div></div></section>
+<section id="history" class="tab"><h2>Histórico</h2>
+<div class="panel"><h3>📅 Calendário</h3><input id="calendarDate" type="date" onchange="showDay(this.value)"><div id="dayView"></div></div><div class="panel"><h3>⚖️ Peso</h3><div id="weights"></div></div><div class="panel"><h3>💉 Retatrutida</h3><div id="tgs"></div></div><div class="panel"><h3>💊 Medicamentos</h3><div id="meds"></div></div></section>
+<section id="settings" class="tab"><h2>Ajustes</h2>
+<div class="panel"><h3>🎨 Aparência</h3><button class="secondary" onclick="toggleTheme()">🌙 Alternar tema claro/escuro</button></div><div class="panel"><h3>🎯 Meta de peso</h3><input id="goal" type="number" step=".1" placeholder="Meta em kg"><button onclick="saveGoal()">Salvar meta</button></div>
 <div class="panel"><h3>⏰ Horários</h3><label>B3</label><input id="b3" type="time"><label>Ômega 3</label><input id="om" type="time"><button onclick="saveTimes()">Salvar horários</button><button class="secondary" onclick="notify()">🔔 Permitir notificações</button><p class="muted">Os horários ficam salvos para consulta. Alarmes automáticos em web apps do iPhone dependem do suporte de notificações do sistema.</p></div>
 <div class="panel"><h3>🔐 Privacidade</h3><button class="secondary" onclick="pin()">Definir/alterar PIN</button><button class="danger" onclick="wipe()">Apagar todos os dados</button><p class="muted">Dados armazenados localmente no aparelho.</p></div>
 <div class="panel warning"><b>Importante</b><p>O app é apenas um diário. Doses e horários devem seguir a prescrição. O app não recomenda alterações de dose.</p></div></section></main>
