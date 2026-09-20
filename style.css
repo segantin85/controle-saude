@@ -4,3 +4,5 @@
 
 /* V9: ensure collapsed registration actions stay hidden even when display:grid is defined */
 #registerActions.is-collapsed, #registerActions[hidden]{display:none!important}
+
+.graph-summary{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;color:#b9cee4;font-size:13px}.graph-summary span{display:inline-flex;align-items:center;gap:6px}.graph-summary i{width:10px;height:10px;border-radius:3px;display:inline-block}
