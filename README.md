@@ -1,3 +1,5 @@
-Controle Saúde V8
+# Controle Saúde V9
 
-Tema escuro fixo. Checklist diário e Retatrutida semanal mantidos. Os quatro botões coloridos de registro foram retirados do topo e ficam no final da tela, dentro de “Registrar dados”, fechado por padrão. Toque em “Mostrar” para abrir.
+Versão com os botões de registro no final da tela, fechados por padrão, e atualização de cache corrigida para GitHub Pages.
+
+Para atualizar: substitua os arquivos do repositório pelo conteúdo desta pasta.
