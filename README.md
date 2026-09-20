@@ -1,16 +1,7 @@
-# Controle Saúde — V5
+# Controle Saúde — V6
 
-Versão web/PWA em tema escuro fixo, com dashboard inspirado no esboço aprovado.
+Tema escuro fixo, quatro botões coloridos e checklist diário funcional.
 
-Inclui:
-- Dashboard escuro com quatro cartões de resumo.
-- Quatro botões coloridos: Peso, Retatrutida, medicamento e creatina.
-- Checklist diário de 5 itens.
-- Sequências por item e dias em foco.
-- Gráfico de evolução do peso.
-- Histórico e calendário.
-- Aba de gráficos.
-- Ajustes de meta, objetivo, horários, PIN e notificações.
-- Dados locais no aparelho.
+O checklist mostra Peso, Retatrutida, B3, Ômega 3 e Creatina com check verde, dose/valor e horário quando registrados. Toque em um item ainda pendente para abrir o registro correspondente.
 
-Para atualizar no GitHub Pages, substitua os arquivos da pasta do projeto pelos arquivos desta versão.
+Os dados continuam no mesmo armazenamento local `cs_v4`, preservando os registros já existentes.
