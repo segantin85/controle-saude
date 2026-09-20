@@ -1,7 +1,3 @@
-# Controle Saúde — V6
+# Controle Saúde V7
 
-Tema escuro fixo, quatro botões coloridos e checklist diário funcional.
-
-O checklist mostra Peso, Retatrutida, B3, Ômega 3 e Creatina com check verde, dose/valor e horário quando registrados. Toque em um item ainda pendente para abrir o registro correspondente.
-
-Os dados continuam no mesmo armazenamento local `cs_v4`, preservando os registros já existentes.
+Checklist diário: Peso, B3, Ômega 3 e Creatina. Cada item permanece pendente até ser registrado no dia e então vira check verde. Retatrutida é acompanhada separadamente como aplicação semanal e não entra na contagem diária. Tema escuro e quatro botões coloridos mantidos.
