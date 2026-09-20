@@ -1,5 +1,10 @@
-# Controle Saúde V9
+# Controle Saúde V10
 
-Versão com os botões de registro no final da tela, fechados por padrão, e atualização de cache corrigida para GitHub Pages.
+V10 mantém o visual aprovado e corrige dois pontos:
+- persistência dos registros entre reaberturas/atualizações;
+- gráfico de evolução do peso na aba Gráficos e no painel inicial.
 
-Para atualizar: substitua os arquivos do repositório pelo conteúdo desta pasta.
+Também cria uma cópia local dos dados em `controle_saude_backup_v10` antes de cada gravação e usa o mesmo armazenamento `cs_v4` para preservar os dados existentes.
+
+## Publicação
+Substitua os arquivos do repositório GitHub Pages por estes arquivos. O endereço continua o mesmo.
